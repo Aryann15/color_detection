@@ -1,5 +1,5 @@
 import cv2 as cv
-
+from PIL import Image
 
 from utils import get_limits
 
@@ -14,9 +14,10 @@ while True:
 
 
     mask = cv.inRange(hsv,lower_limit,upper_limit )
+    mask_ = Image.fromarray(mask)
+    bbox = mask_.getbbox()
 
-
-    cv.imshow('frame',mask )
+    cv.imshow('frame',mask  )
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
